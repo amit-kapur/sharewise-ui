@@ -1,12 +1,15 @@
+@if(authService.currentUserSig() == null) {
+<div>
+  <a routerLink="/login">Login</a>
+  <a routerLink="/register">Register</a>
+</div>
+}
 
+@if(authService.currentUserSig()){
+<div>
+  {{authService.currentUserSig()?.username}}
+  <span (click)="logout()">Logout</span>
+</div>
+}
 
-<main class="main">
-  <div class="content">
-    <div class="left-side">
-      <h1>Hello, {{ title }}</h1>
-      <p>Congratulations! Your app is live...</p>
-    </div>
-  </div>
-</main>
-
-<router-outlet />
+<router-outlet></router-outlet>
