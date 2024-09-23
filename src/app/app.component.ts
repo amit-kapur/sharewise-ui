@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/services/auth.service';
 import { NavComponent } from './shared/components/nav/nav.component';
 import { HeroComponent } from './shared/components/hero/hero.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/components/login/login.component';
+
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ import { LoginComponent } from './login/login.component';
     NavComponent,
     HeroComponent,
     FooterComponent,
-    LoginComponent,
+    LoginComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

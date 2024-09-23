@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../../auth.service';
+
 
 @Component({
   selector: 'sw-register',
@@ -22,13 +23,6 @@ export class RegisterComponent {
     email: ['', Validators.required],
     password: ['', Validators.required],
   });
-
-  // constructor(
-  //   private fb: FormBuilder,
-  //   private http: HttpClient,
-  //   private router: Router,
-  //   private authService: AuthService
-  // ) {}
 
   onSubmit(): void {
     console.log('register');

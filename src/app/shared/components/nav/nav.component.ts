@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { RouterLink } from "@angular/router";
-import { AuthService } from "../../../auth.service";
+import { AuthService } from "../../../auth/services/auth.service";
 
 
 @Component({
