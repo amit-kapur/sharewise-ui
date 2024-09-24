@@ -7,6 +7,7 @@ import { AuthStateInterface } from '../types/authState.interface';
 const initialState: AuthStateInterface = {
   isSubmitting: false,
   isLoading: false,
+  isLoggedIn: false,
   // currentUser: undefined,
   validationErrors: null,
 };
@@ -18,27 +19,44 @@ const authFeature = createFeature({
     on(authActions.register, (state) => ({
       ...state,
       isSubmitting: true,
+      isLoggedIn: false,
       validationErrors: null,
     })),
 
     on(authActions.registerSuccess, (state, action) => ({
       ...state,
       isSubmitting: false,
+      isLoggedIn: false,
       currentUser: action.currentUser,
     })),
 
     on(authActions.registerFailure, (state, action) => ({
       ...state,
       isSubmitting: false,
+      isLoggedIn: false,
       validationErrors: action.errors,
     })),
 
     on(authActions.login, (state) => ({
       ...state,
       isSubmitting: true,
+      isLoggedIn: false,
       validationErrors: null,
     })),
 
+    on(authActions.loginSuccess, (state, action) => ({
+      ...state,
+      isSubmitting: false,
+      isLoggedIn: true,
+      // currentUser: action.currentUser,
+    })),
+
+    on(authActions.loginFailure, (state, action) => ({
+      ...state,
+      isSubmitting: false,
+      isLoggedIn: false,
+      validationErrors: action.errors,
+    })),
    
 
     on(routerNavigatedAction, (state) => ({...state, validationErrors: null}))
@@ -48,8 +66,9 @@ const authFeature = createFeature({
 export const {
   name: authFeatureKey,
   reducer: authReducer,
-  // selectIsSubmitting,
-  // selectIsLoading,
+  selectIsSubmitting,
+  selectIsLoading,
   // selectCurrentUser,
-  // selectValidationErrors,
+  selectValidationErrors,
+  selectIsLoggedIn,
 } = authFeature;

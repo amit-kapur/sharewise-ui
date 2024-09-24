@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from './auth/services/auth.service';
 import { NavComponent } from './shared/components/nav/nav.component';
-import { HeroComponent } from './shared/components/hero/hero.component';
+import { BannerComponent } from './shared/components/banner/banner.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { LoginComponent } from './auth/components/login/login.component';
 
@@ -16,7 +16,7 @@ import { LoginComponent } from './auth/components/login/login.component';
     RouterOutlet,
     RouterLink,
     NavComponent,
-    HeroComponent,
+    BannerComponent,
     FooterComponent,
     LoginComponent
   ],
