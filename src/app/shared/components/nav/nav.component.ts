@@ -1,6 +1,8 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { AuthService } from "../../../auth/services/auth.service";
+import { Store } from "@ngrx/store";
+import { authActions } from "../../../auth/store/actions";
 
 
 @Component({
@@ -11,6 +13,7 @@ import { AuthService } from "../../../auth/services/auth.service";
 })
 export class NavComponent implements OnInit {
 
+  store = inject(Store);
   authService = inject(AuthService);
 
   ngOnInit(): void {
@@ -29,8 +32,9 @@ export class NavComponent implements OnInit {
     );
   }
 
-  logout(): void {
+  onLogout(): void {
     console.log('logout');
-    this.authService.logout();
+    // this.authService.logout();
+    this.store.dispatch(authActions.logout());
   }
 }

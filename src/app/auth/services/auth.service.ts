@@ -18,9 +18,7 @@ export class AuthService {
   user$ = user(this.firbaseAuth);
   currentUserSig = signal<UserInterface | null | undefined>(undefined);
 
-  register(
-   data: RegisterRequestInterface
-  ): Observable<void> {
+  register(data: RegisterRequestInterface): Observable<void> {
     const promise = createUserWithEmailAndPassword(
       this.firbaseAuth,
       data.user.email,
@@ -32,13 +30,16 @@ export class AuthService {
     return from(promise);
   }
 
-  login(data: LoginRequestInterface): Observable<void> {
+  login(data: LoginRequestInterface): Observable<any> {
     const promise = signInWithEmailAndPassword(
       this.firbaseAuth,
       data.user.email,
       data.user.password
-    ).then(() => {});
-
+    ).then((userCredential) => {
+      console.log(userCredential.user.uid);
+      userCredential.user;  // TODO: get the user details 
+    })
+    
     return from(promise);
   }
 

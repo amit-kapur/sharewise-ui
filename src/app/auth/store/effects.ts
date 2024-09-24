@@ -62,7 +62,11 @@ export const loginEffect = createEffect(
       switchMap(({ request }) => {
         return authService.login(request).pipe(
           map(() => {
-            return authActions.loginSuccess();
+            const currentUser: CurrentUserInterface = {
+              email: request.user.email,
+              username: '' // request.user?.username || '', // TODO: should return the display name
+            };
+            return authActions.loginSuccess({currentUser});
           }),
           catchError((errorResponse: HttpErrorResponse) => {
             return of(
@@ -84,6 +88,45 @@ export const redirectAfterLoginEffect = createEffect(
       ofType(authActions.loginSuccess),
       tap(() => {
         router.navigateByUrl('dashboard');
+      })
+    );
+  },
+  {
+    functional: true,
+    dispatch: false,
+  }
+);
+
+
+export const logoutEffect = createEffect(
+  (actions$ = inject(Actions), authService = inject(AuthService)) => {
+    return actions$.pipe(
+      ofType(authActions.logout),
+      switchMap(() => {
+        return authService.logout().pipe(
+          map(() => {
+            return authActions.logoutSuccess();
+          }),
+          catchError((errorResponse: HttpErrorResponse) => {
+            return of(
+              authActions.loginFailure({
+                errors: { errorMessage: errorResponse.message} ,
+              })
+            );
+          })
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+
+export const redirectAfterLogoutEffect = createEffect(
+  (actions$ = inject(Actions), router = inject(Router)) => {
+    return actions$.pipe(
+      ofType(authActions.logoutSuccess),
+      tap(() => {
+        router.navigateByUrl('/');
       })
     );
   },

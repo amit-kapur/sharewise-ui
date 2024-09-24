@@ -24,7 +24,6 @@ import { LoginComponent } from './auth/components/login/login.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  title = 'sharewise-ui';
   authService = inject(AuthService);
 
   ngOnInit(): void {

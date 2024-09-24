@@ -19,9 +19,15 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 State Management Lifecycle
 
+Packages installed: 
+
 ```
 $ npm i @ngrx/store
+
+$ npm i @ngrx/router-store@latest
 ```
+
+
 
 Action: Something that has happened, a unique event. 
 
@@ -47,6 +53,8 @@ $ firebase deploy
 ## Tasks
 
 - [x] Set up Firebase authentication
+
+- [ ] Get currrent user from Firebase db. 
 
 - [ ] Set up automatic builds and deploys with GitHub
 

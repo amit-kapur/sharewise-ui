@@ -48,7 +48,7 @@ const authFeature = createFeature({
       ...state,
       isSubmitting: false,
       isLoggedIn: true,
-      // currentUser: action.currentUser,
+      currentUser: action.currentUser,
     })),
 
     on(authActions.loginFailure, (state, action) => ({
@@ -58,7 +58,7 @@ const authFeature = createFeature({
       validationErrors: action.errors,
     })),
    
-
+    // Clean the validation errors, everytime we update the route. 
     on(routerNavigatedAction, (state) => ({...state, validationErrors: null}))
   ),
 });
