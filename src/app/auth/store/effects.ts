@@ -7,6 +7,7 @@ import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { CurrentUserInterface } from '../../shared/types/currentUser.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { UserCredential } from '@angular/fire/auth';
 
 export const registerEffect = createEffect(
   (
@@ -20,8 +21,9 @@ export const registerEffect = createEffect(
         return authService.register(request).pipe(
           map(() => {
             const currentUser: CurrentUserInterface = {
+              uid: '',
               email: request.user.email,
-              username: request.user?.username || '',
+              displayName: request.user?.username || '',
             };
             persistenceService.set('currentUser', { currentUser });
             return authActions.registerSuccess({ currentUser });
@@ -29,7 +31,7 @@ export const registerEffect = createEffect(
           catchError((errorResponse: HttpErrorResponse) => {
             return of(
               authActions.registerFailure({
-                errors: { errorMessage: errorResponse.message} ,
+                errors: { errorMessage: errorResponse.message },
               })
             );
           })
@@ -61,17 +63,18 @@ export const loginEffect = createEffect(
       ofType(authActions.login),
       switchMap(({ request }) => {
         return authService.login(request).pipe(
-          map(() => {
+          map((userCredential: UserCredential) => {
             const currentUser: CurrentUserInterface = {
-              email: request.user.email,
-              username: '' // request.user?.username || '', // TODO: should return the display name
+              uid: userCredential.user.uid,
+              email: userCredential.user.email!,
+              displayName: userCredential.user.displayName || '',
             };
-            return authActions.loginSuccess({currentUser});
+            return authActions.loginSuccess({ currentUser });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
             return of(
               authActions.loginFailure({
-                errors: { errorMessage: errorResponse.message} ,
+                errors: { errorMessage: errorResponse.message },
               })
             );
           })
@@ -97,7 +100,6 @@ export const redirectAfterLoginEffect = createEffect(
   }
 );
 
-
 export const logoutEffect = createEffect(
   (actions$ = inject(Actions), authService = inject(AuthService)) => {
     return actions$.pipe(
@@ -110,7 +112,7 @@ export const logoutEffect = createEffect(
           catchError((errorResponse: HttpErrorResponse) => {
             return of(
               authActions.loginFailure({
-                errors: { errorMessage: errorResponse.message} ,
+                errors: { errorMessage: errorResponse.message },
               })
             );
           })
@@ -134,4 +136,23 @@ export const redirectAfterLogoutEffect = createEffect(
     functional: true,
     dispatch: false,
   }
+);
+
+export const getCurrentUserEffect = createEffect(
+  (actions$ = inject(Actions), authService = inject(AuthService)) => {
+    return actions$.pipe(
+      ofType(authActions.getCurrentUser),
+      switchMap(() => {
+        return authService.getCurrentUser().pipe(
+          map((currentUser) => {
+            return authActions.getCurrentUserSuccess({ currentUser });
+          }),
+          catchError(() => {
+            return of(authActions.getCurrentUserFailure());
+          })
+        );
+      })
+    );
+  },
+  { functional: true }
 );

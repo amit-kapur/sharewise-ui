@@ -3,6 +3,7 @@ import { RouterLink } from "@angular/router";
 import { AuthService } from "../../../auth/services/auth.service";
 import { Store } from "@ngrx/store";
 import { authActions } from "../../../auth/store/actions";
+import { CurrentUserInterface } from "../../types/currentUser.interface";
 
 
 @Component({
@@ -18,11 +19,12 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.user$.subscribe(
-      (user: { email: string; displayName: string }) => {
+      (user: CurrentUserInterface) => {
         if (user) {
           this.authService.currentUserSig.set({
+            uid: user.uid || '',
             email: user.email!,
-            username: user.displayName!,
+            displayName: user.displayName,
           });
         } else {
           this.authService.currentUserSig.set(null);

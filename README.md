@@ -25,6 +25,10 @@ Packages installed:
 $ npm i @ngrx/store
 
 $ npm i @ngrx/router-store@latest
+
+$ npm install ngrx-store-localstorage --save
+
+$ npm install ngrx-store-localstorage --save
 ```
 
 
@@ -54,7 +58,9 @@ $ firebase deploy
 
 - [x] Set up Firebase authentication
 
-- [ ] Get currrent user from Firebase db. 
+- [x] Get currrent user from Firebase db. 
+
+- [ ] NgRx should not lose state on refresh or F5. 
 
 - [ ] Set up automatic builds and deploys with GitHub
 

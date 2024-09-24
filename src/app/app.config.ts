@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
-import { provideState, provideStore } from '@ngrx/store';
+import { ActionReducer, ActionReducerMap, MetaReducer, provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import * as authEffects from './auth/store/effects';
@@ -15,6 +15,8 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { provideEffects } from '@ngrx/effects';
 import { authFeatureKey, authReducer } from './auth/store/reducer';
+import { localStorageSync } from 'ngrx-store-localstorage';
+// import { reducers } from './auth/store/reducer';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCHnPkTD3CJfxCxOy2JWtTGb9G4yUHs4pQ',
@@ -25,6 +27,14 @@ const firebaseConfig = {
   appId: '1:239879491546:web:8503b758db0c7e077bbae3',
   measurementId: 'G-KHQM38S4BK',
 };
+
+// const reducers: ActionReducerMap<IState> = {todos, visibilityFilter};
+
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+  return localStorageSync({keys: ['todos']})(reducer);
+}
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
