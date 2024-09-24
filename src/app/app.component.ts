@@ -38,12 +38,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.init();
-    // this.applicationRef.isStable.pipe(first((isStable) => isStable)).subscribe(() => {
-    //   // Note that we don't need to use `runOutsideAngular` because `isStable`
-    //   // emits events outside of the Angular zone when it's truthy (falsy values
-    //   // are emitted inside the Angular zone).
-    //   setInterval(() => this.init(), 1000);
-    // });
+    this.applicationRef.isStable.pipe(first((isStable) => isStable)).subscribe(() => {
+      // Note that we don't need to use `runOutsideAngular` because `isStable`
+      // emits events outside of the Angular zone when it's truthy (falsy values
+      // are emitted inside the Angular zone).
+      setInterval(() => { }, 1000);
+     });
   }
 
   init() : void {
