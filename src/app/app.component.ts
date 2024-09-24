@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { ApplicationRef, Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from './auth/services/auth.service';
 import { NavComponent } from './shared/components/nav/nav.component';
@@ -7,6 +7,7 @@ import { BannerComponent } from './shared/components/banner/banner.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { CurrentUserInterface } from './shared/types/currentUser.interface';
+import { first } from 'rxjs';
 
 
 @Component({
@@ -26,8 +27,19 @@ import { CurrentUserInterface } from './shared/types/currentUser.interface';
 })
 export class AppComponent implements OnInit {
   authService = inject(AuthService);
+  applicationRef = inject(ApplicationRef);
 
   ngOnInit(): void {
+    this.init();
+    this.applicationRef.isStable.pipe(first((isStable) => isStable)).subscribe(() => {
+      // Note that we don't need to use `runOutsideAngular` because `isStable`
+      // emits events outside of the Angular zone when it's truthy (falsy values
+      // are emitted inside the Angular zone).
+      setInterval(() => this.init(), 1000);
+    });
+  }
+
+  init() : void {
     this.authService.user$.subscribe(
       (user: CurrentUserInterface) => {
         if (user) {
@@ -39,13 +51,12 @@ export class AppComponent implements OnInit {
         } else {
           this.authService.currentUserSig.set(null);
         }
-        console.log('AppComponent currentUserSig: ',this.authService.currentUserSig());
+        // console.log('AppComponent currentUserSig: ',this.authService.currentUserSig());
       }
     );
   }
 
   logout(): void {
-    console.log('logout');
     this.authService.logout();
   }
 }

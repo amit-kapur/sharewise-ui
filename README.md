@@ -26,9 +26,9 @@ $ npm i @ngrx/store
 
 $ npm i @ngrx/router-store@latest
 
+// Usage: NgRx should not lose state on refresh or F5. 
 $ npm install ngrx-store-localstorage --save
 
-$ npm install ngrx-store-localstorage --save
 ```
 
 
@@ -61,6 +61,8 @@ $ firebase deploy
 - [x] Get currrent user from Firebase db. 
 
 - [x] NgRx should not lose state on refresh or F5. 
+
+- [ ] Internal server error: Page /home did not render in 30 seconds
 
 - [ ] Set up automatic builds and deploys with GitHub
 

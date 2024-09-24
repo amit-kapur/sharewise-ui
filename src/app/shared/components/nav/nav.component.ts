@@ -29,14 +29,12 @@ export class NavComponent implements OnInit {
         } else {
           this.authService.currentUserSig.set(null);
         }
-        console.log('currentUserSig -> ', this.authService.currentUserSig());
+        // console.log('currentUserSig -> ', this.authService.currentUserSig());
       }
     );
   }
 
   onLogout(): void {
-    console.log('logout');
-    // this.authService.logout();
     this.store.dispatch(authActions.logout());
   }
 }
