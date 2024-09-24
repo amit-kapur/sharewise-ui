@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ApplicationRef, Component, inject, OnInit } from '@angular/core';
+import { ApplicationRef, Component, inject, NgZone, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from './auth/services/auth.service';
 import { NavComponent } from './shared/components/nav/nav.component';
@@ -29,14 +29,21 @@ export class AppComponent implements OnInit {
   authService = inject(AuthService);
   applicationRef = inject(ApplicationRef);
 
+  constructor() {
+    const ngZone = inject(NgZone);
+    ngZone.runOutsideAngular(() => {
+      setInterval(() => {}, 1000);
+    });
+  }
+
   ngOnInit(): void {
     this.init();
-    this.applicationRef.isStable.pipe(first((isStable) => isStable)).subscribe(() => {
-      // Note that we don't need to use `runOutsideAngular` because `isStable`
-      // emits events outside of the Angular zone when it's truthy (falsy values
-      // are emitted inside the Angular zone).
-      setInterval(() => this.init(), 1000);
-    });
+    // this.applicationRef.isStable.pipe(first((isStable) => isStable)).subscribe(() => {
+    //   // Note that we don't need to use `runOutsideAngular` because `isStable`
+    //   // emits events outside of the Angular zone when it's truthy (falsy values
+    //   // are emitted inside the Angular zone).
+    //   setInterval(() => this.init(), 1000);
+    // });
   }
 
   init() : void {
