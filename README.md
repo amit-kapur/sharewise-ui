@@ -60,7 +60,7 @@ $ firebase deploy
 
 - [x] Get currrent user from Firebase db. 
 
-- [ ] NgRx should not lose state on refresh or F5. 
+- [x] NgRx should not lose state on refresh or F5. 
 
 - [ ] Set up automatic builds and deploys with GitHub
 

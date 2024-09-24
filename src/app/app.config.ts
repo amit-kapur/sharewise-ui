@@ -5,7 +5,12 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
-import { ActionReducer, ActionReducerMap, MetaReducer, provideState, provideStore } from '@ngrx/store';
+import {
+  ActionReducer,
+  MetaReducer,
+  provideState,
+  provideStore,
+} from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import * as authEffects from './auth/store/effects';
@@ -15,9 +20,9 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { provideEffects } from '@ngrx/effects';
 import { authFeatureKey, authReducer } from './auth/store/reducer';
-import { localStorageSync } from 'ngrx-store-localstorage';
-// import { reducers } from './auth/store/reducer';
+import { localStorageSync, LocalStorageConfig } from 'ngrx-store-localstorage';
 
+// config copied from firebase console during app setup. 
 const firebaseConfig = {
   apiKey: 'AIzaSyCHnPkTD3CJfxCxOy2JWtTGb9G4yUHs4pQ',
   authDomain: 'sharewise-ai.firebaseapp.com',
@@ -28,13 +33,21 @@ const firebaseConfig = {
   measurementId: 'G-KHQM38S4BK',
 };
 
-// const reducers: ActionReducerMap<IState> = {todos, visibilityFilter};
-
-export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({keys: ['todos']})(reducer);
+export function localStorageSyncConfig(): LocalStorageConfig {
+  return {
+    keys: ['auth'], 
+    rehydrate: true,
+    checkStorageAvailability: true,
+  };
 }
-const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
+export function localStorageSyncReducer(
+  reducer: ActionReducer<any>
+): ActionReducer<any> {
+  return localStorageSync(localStorageSyncConfig())(reducer);
+}
+
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -44,8 +57,19 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
     provideStore({
-      router: routerReducer
-    }),
+      router: routerReducer,
+    },
+    {
+			metaReducers,
+			runtimeChecks: {
+				strictStateImmutability: true,
+				strictActionImmutability: true,
+				strictStateSerializability: true,
+				strictActionSerializability: true,
+				strictActionWithinNgZone: true,
+				strictActionTypeUniqueness: true
+			}
+		}),
     provideEffects(authEffects),
     provideState(authFeatureKey, authReducer),
     provideRouterStore(),
@@ -58,5 +82,3 @@ export const appConfig: ApplicationConfig = {
     }),
   ],
 };
-
-
