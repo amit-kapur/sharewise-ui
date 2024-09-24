@@ -15,10 +15,22 @@ Run `ng generate component component-name` to generate a new component. You can 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 
+## NgRx 
+
+State Management Lifecycle
+
+```
+$ npm i @ngrx/store
+```
+
+Action: Something that has happened, a unique event. 
 
 
 ## Firebase Commands 
 
+Some basic Firebase commands are:
+
+```
 $ firebase login
 
 $ firebase login --reauth
@@ -28,12 +40,24 @@ $ Firebase init
 $ firebase logout
 
 $ firebase deploy
-
-
-## TODO
-
-- Set up automatic builds and deploys with GitHub
+```
 
 
 
+## Tasks
+
+- [x] Set up Firebase authentication
+
+- [ ] Set up automatic builds and deploys with GitHub
+
+- [ ] Create Portfolio(s)
+
+- [ ] Add Shares to a portfolio
+
+
+
+
+### Readme.md 
+
+[Basic formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 

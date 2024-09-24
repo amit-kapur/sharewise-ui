@@ -6,18 +6,19 @@ import { AuthService } from '../../services/auth.service';
 import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 import { authActions } from '../../store/actions';
 import { Store } from '@ngrx/store';
-
+import { combineLatest } from 'rxjs';
+import { selectIsSubmitting, selectValidationErrors } from '../../store/reducer';
+import { BackendErrorMessagesComponent } from '../../../shared/components/backendErrorMessages/backendErrorMessages.component';
 
 @Component({
   selector: 'sw-register',
   templateUrl: './register.component.html',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, BackendErrorMessagesComponent],
 })
 export class RegisterComponent {
-
-  fb = inject(FormBuilder)
-  router = inject(Router)
+  fb = inject(FormBuilder);
+  router = inject(Router);
   authService = inject(AuthService);
   store = inject(Store);
   errorMessage: string | null = null;
@@ -28,17 +29,14 @@ export class RegisterComponent {
     password: ['', Validators.required],
   });
 
-  onSubmit(): void {
-    console.log('register');
-    // const rawForm = this.form.getRawValue();
-    // this.authService.register(
-    //   rawForm.email,
-    //   rawForm.username,
-    //   rawForm.password
-    // ).subscribe({ next: () => this.router.navigateByUrl('/'), error: (err) => {
-    //   this.errorMessage = err.code;
-    // }});
+  data$ = combineLatest({
+    isSubmitting: this.store.select(selectIsSubmitting),
+    backendErrors: this.store.select(selectValidationErrors),
+  })
 
+
+  onSubmit(): void {
+    console.log('register with values: ', this.form.getRawValue());
     const request: RegisterRequestInterface = {
       user: this.form.getRawValue(),
     };
@@ -46,4 +44,3 @@ export class RegisterComponent {
     this.store.dispatch(authActions.register({ request }));
   }
 }
-

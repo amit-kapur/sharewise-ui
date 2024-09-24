@@ -5,12 +5,16 @@ import { AuthService } from '../../services/auth.service';
 import { LoginRequestInterface } from '../../types/loginRequest.interface';
 import { Store } from '@ngrx/store';
 import { authActions } from '../../store/actions';
+import { BackendErrorMessagesComponent } from '../../../shared/components/backendErrorMessages/backendErrorMessages.component';
+import { combineLatest } from 'rxjs';
+import { selectIsSubmitting, selectValidationErrors } from '../../store/reducer';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'sw-login',
   templateUrl: './login.component.html',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, BackendErrorMessagesComponent, CommonModule],
 })
 export class LoginComponent {
   fb = inject(FormBuilder);
@@ -23,6 +27,11 @@ export class LoginComponent {
     email: ['', Validators.required],
     password: ['', Validators.required],
   });
+
+  data$ = combineLatest({
+    isSubmitting: this.store.select(selectIsSubmitting),
+    backendErrors: this.store.select(selectValidationErrors),
+  })
 
   onSubmit(): void {
     const request: LoginRequestInterface = {
