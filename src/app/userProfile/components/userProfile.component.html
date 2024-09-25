@@ -1,0 +1,20 @@
+
+
+
+User Profile component.
+
+<ng-container *ngIf="data$ | async as data">
+    <div class="profile-page" *ngIf="data.userProfile">
+        <div class="user-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-10 offset-md-1">
+                        USER PROFILE IMAGE 
+                        <h4>{{data.userProfile.displayName}}</h4>
+                        <p>User profile bio</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

@@ -75,7 +75,7 @@ const authFeature = createFeature({
     on(authActions.logout, (state) => ({
       ...state,          // On logout we don't want to reset the full state but only auth state to say that user is logged out. example, home page should be preserved.
       ...initialState,  // override the currentstate with initial state and set the current user to null 
-      currentUser: null
+      currentUser: null,
     }))
   ),
 });

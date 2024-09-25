@@ -21,12 +21,12 @@
                             &nbsp; Settings
                         </a>
                     </li>
-                    <!-- <li class="nav-item">
-                      <a [routerLink]="['/profiles', data.currentUser.username]" class="nav-link">
-                          <img class="user-pic"  [src]="data.currentUser.image" />
-                          &nbsp; {{ data.currentUser.username}}
+                    <li class="nav-item">
+                      <a [routerLink]="['/profiles', authService.currentUserSig()?.displayName]" class="nav-link">
+                          <!-- <img class="user-pic"  [src]="data.currentUser.image" /> -->
+                          &nbsp; {{ authService.currentUserSig()?.displayName || authService.currentUserSig()?.email }}
                       </a>
-                  </li> -->
+                  </li>
                     <li class="nav-item">
                         <a class="nav-link" (click)="onLogout()">
                             logout

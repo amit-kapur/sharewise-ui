@@ -19,6 +19,10 @@ For more information, view the documents in `docs/`, which includes
 
 - [x] Profile page
 
+- [ ] User Profile page
+
+- [ ] Login via Gmail 
+
 - [ ] Set up automatic builds and deploys with GitHub
 
 - [ ] Create Portfolio(s)
