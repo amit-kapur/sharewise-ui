@@ -35,7 +35,7 @@ const firebaseConfig = {
 
 export function localStorageSyncConfig(): LocalStorageConfig {
   return {
-    keys: ['auth'], 
+    keys: ['auth', 'settings'], 
     rehydrate: true,
     checkStorageAvailability: true,
   };

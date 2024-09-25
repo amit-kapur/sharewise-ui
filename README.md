@@ -1,57 +1,12 @@
-# Project
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5 and [Node Version](https://nodejs.org/en/blog/release/v20.11.1) v20.11.1
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-
-## NgRx 
-
-State Management Lifecycle
-
-Packages installed: 
-
-```
-$ npm i @ngrx/store
-
-$ npm i @ngrx/router-store@latest
-
-// Usage: NgRx should not lose state on refresh or F5. 
-$ npm install ngrx-store-localstorage --save
-
-```
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 
 
-Action: Something that has happened, a unique event. 
+For more information, view the documents in `docs/`, which includes
 
-
-## Firebase Commands 
-
-Some basic Firebase commands are:
-
-```
-$ firebase login
-
-$ firebase login --reauth
-
-$ Firebase init
-
-$ firebase logout
-
-$ firebase deploy
-```
-
+-   [Getting Started](./docs/getting-started.md)
+-   [Monorepo document](./docs/monorepo.md)
+-   [Firebase](./docs/firebase.md)
 
 
 ## Tasks
@@ -62,13 +17,15 @@ $ firebase deploy
 
 - [x] NgRx should not lose state on refresh or F5. 
 
-- [ ] Internal server error: Page /home did not render in 30 seconds
+- [x] Profile page
 
 - [ ] Set up automatic builds and deploys with GitHub
 
 - [ ] Create Portfolio(s)
 
 - [ ] Add Shares to a portfolio
+
+- [ ] Internal server error: Page /home did not render in 30 seconds
 
 
 

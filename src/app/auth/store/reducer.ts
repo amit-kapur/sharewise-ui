@@ -71,7 +71,12 @@ const authFeature = createFeature({
     })),
    
     // Clean the validation errors, everytime we update the route. 
-    on(routerNavigatedAction, (state) => ({...state, validationErrors: null}))
+    on(routerNavigatedAction, (state) => ({...state, validationErrors: null})),
+    on(authActions.logout, (state) => ({
+      ...state,          // On logout we don't want to reset the full state but only auth state to say that user is logged out. example, home page should be preserved.
+      ...initialState,  // override the currentstate with initial state and set the current user to null 
+      currentUser: null
+    }))
   ),
 });
 

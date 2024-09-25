@@ -100,35 +100,17 @@ export const redirectAfterLoginEffect = createEffect(
   }
 );
 
+
 export const logoutEffect = createEffect(
-  (actions$ = inject(Actions), authService = inject(AuthService)) => {
+  (actions$ = inject(Actions), router = inject(Router), authService = inject(AuthService)) => {
     return actions$.pipe(
       ofType(authActions.logout),
-      switchMap(() => {
-        return authService.logout().pipe(
-          map(() => {
-            return authActions.logoutSuccess();
-          }),
-          catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              authActions.loginFailure({
-                errors: { errorMessage: errorResponse.message },
-              })
-            );
-          })
-        );
-      })
-    );
-  },
-  { functional: true }
-);
-
-export const redirectAfterLogoutEffect = createEffect(
-  (actions$ = inject(Actions), router = inject(Router)) => {
-    return actions$.pipe(
-      ofType(authActions.logoutSuccess),
       tap(() => {
-        router.navigateByUrl('/');
+          authService.logout().pipe(
+          map(() => {
+            router.navigateByUrl('/');
+          }))
+        
       })
     );
   },

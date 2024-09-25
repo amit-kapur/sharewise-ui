@@ -13,6 +13,7 @@ import { UserInterface } from '../types/user.interface';
 import { RegisterRequestInterface } from '../types/registerRequest.interface';
 import { LoginRequestInterface } from '../types/loginRequest.interface';
 import { CurrentUserInterface } from '../../shared/types/currentUser.interface';
+import { CurrentUserRequestInterface } from '../../shared/types/currentUserRequest.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -21,11 +22,6 @@ export class AuthService {
   currentUserSig = signal<CurrentUserInterface | null | undefined>(undefined);
 
   getCurrentUser(): Observable<CurrentUserInterface | null | undefined> {
-    // const appUser: UserInterface = {
-    //   uid: this.currentUserSig()?.uid || '',
-    //   email: this.currentUserSig()?.email || '',
-    //   displayName: this.currentUserSig()?.displayName
-    // }
     return of(this.currentUserSig());
   }
 
@@ -57,4 +53,18 @@ export class AuthService {
 
     return from(promise);
   }
+
+  // updateCurrentUser(
+  //   currentUser: UserCredential,
+  //   currentUserRequestInterface: CurrentUserRequestInterface
+  // ): Observable<UserCredential> {
+  //   // return from(
+  //   //   updateCurrentUser(currentUser.user, {
+  //   //     // email: currentUserRequestInterface.user.email,
+  //   //     // password: currentUserRequestInterface.user.password,
+  //   //     displayName: currentUserRequestInterface.user.displayName,
+  //   //   })
+  //   );
+  // }
+  
 }

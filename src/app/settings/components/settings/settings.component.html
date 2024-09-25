@@ -1,15 +1,18 @@
 <ng-container *ngIf="data$ | async as data">
-    <div class="auth-page">
-        <div class="container page">
+
+    <div class="settings-page" *ngIf="currentUser">
+        <div class="contanier page">
             <div class="row">
                 <div class="col-md-6 offset-md-3 col-xs-12">
-                    <h1 class="text-xs-center">Sign In</h1>
-                    <p class="text-xs-center">
-                        <a routerLink="/register"> Need an account?</a>
-                    </p>
+                    <h1 class="text-xs-center">Settings</h1>
                     <sw-backend-error-messages *ngIf="data.backendErrors"
-                        [backendErrors]="data.backendErrors"></sw-backend-error-messages>
+                    [backendErrors]="data.backendErrors"></sw-backend-error-messages>
+
                     <form name="loginForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <fieldset class="form-group">
+                            <input type="text" class="form-control form-control-lg" placeholder="Display Name"
+                                formControlName="displayName" />
+                        </fieldset>
                         <fieldset class="form-group">
                             <input type="text" class="form-control form-control-lg" placeholder="Email"
                                 formControlName="email" />
@@ -19,13 +22,22 @@
                                 formControlName="password" />
                         </fieldset>
                         <fieldset class="form-group">
-                            <button type="submit" class="btn btn-lg btn-primary pull-xs-right">
-                                Sign up
+                            <button type="submit" class="btn btn-lg btn-primary pull-xs-right"
+                            [disabled]="form.invalid || data.isSubmitting"
+                               >
+                                Update settings
                             </button>
                         </fieldset>
                     </form>
+                    <hr />
+                    <button type="submit" class="btn btn-outline=danger"
+                            (click)="onLogout()"
+                               >
+                               Or click here to logout
+                            </button>
                 </div>
             </div>
         </div>
+
     </div>
 </ng-container>

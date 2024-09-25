@@ -15,6 +15,10 @@ export const appRoutes: Routes = [
     loadChildren: () => import('../../src/app/dashboard/dashboard.routes').then((m) => m.dashboardRoutes)
   },
   {
+    path: 'settings',
+    loadChildren: () => import('../../src/app/settings/settings.route').then((m) => m.settingsRoutes)
+  },
+  {
     path: '',
     loadChildren: () => import('../../src/app/home/home.routes').then((m) => m.homeRoutes)
   },
