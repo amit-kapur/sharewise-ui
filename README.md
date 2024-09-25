@@ -25,12 +25,20 @@ For more information, view the documents in `docs/`, which includes
 
 - [ ] Add Shares to a portfolio
 
+
+
+> [!WARNING]
+> Urgent defects that needs immediate user attention to avoid problems.
+
+- [ ] Action types are registered more than once,
+
 - [ ] Internal server error: Page /home did not render in 30 seconds
 
 
 
+> [!TIP]
 
-### Readme.md 
+> Useful tips on Readme.md 
 
 [Basic formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 

@@ -100,17 +100,17 @@ export const redirectAfterLoginEffect = createEffect(
   }
 );
 
-
 export const logoutEffect = createEffect(
-  (actions$ = inject(Actions), router = inject(Router), authService = inject(AuthService)) => {
+  (
+    actions$ = inject(Actions),
+    router = inject(Router),
+    authService = inject(AuthService)
+  ) => {
     return actions$.pipe(
       ofType(authActions.logout),
       tap(() => {
-          authService.logout().pipe(
-          map(() => {
-            router.navigateByUrl('/');
-          }))
-        
+        authService.logout();
+        router.navigateByUrl('/');
       })
     );
   },
