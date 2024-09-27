@@ -8,12 +8,13 @@ import {
 import { Observable } from 'rxjs';
 import { HelloBannerComponent } from "../hello-banner/hello-banner.component";
 import { AddPortfolioComponent } from "../add-portfolio/add-portfolio.component";
+import { PortfolioComponent } from '../portfolio/portfolio.component';
 
 @Component({
   selector: 'sw-dashboard',
   templateUrl: './dashboard.component.html',
   standalone: true,
-  imports: [NgFor, CommonModule, HelloBannerComponent, AddPortfolioComponent],
+  imports: [NgFor, CommonModule, HelloBannerComponent, AddPortfolioComponent, PortfolioComponent],
 })
 export class DashboardComponent {
   firestore: Firestore = inject(Firestore);
