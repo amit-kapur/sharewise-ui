@@ -14,9 +14,11 @@ import { RegisterRequestInterface } from '../types/registerRequest.interface';
 import { LoginRequestInterface } from '../types/loginRequest.interface';
 import { CurrentUserInterface } from '../../shared/types/currentUser.interface';
 import { CurrentUserRequestInterface } from '../../shared/types/currentUserRequest.interface';
+import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  firestore: Firestore = inject(Firestore);
   firbaseAuth = inject(Auth);
   user$ = user(this.firbaseAuth);
   currentUserSig = signal<CurrentUserInterface | null | undefined>(undefined);
@@ -30,9 +32,20 @@ export class AuthService {
       this.firbaseAuth,
       data.user.email,
       data.user.password
-    ).then((response) =>
-      updateProfile(response.user, { displayName: data.user.username })
-    );
+    ).then((response) => {
+      updateProfile(response.user, { displayName: data.user.username });
+
+      const portfolios = collection(
+        this.firestore,
+        'Users',
+        response.user.uid,
+        'Portfolio'
+      );
+      addDoc(portfolios, {
+        name: 'Default',
+        createdOn: Date.now()
+      });
+    });
 
     return from(promise);
   }
@@ -66,5 +79,4 @@ export class AuthService {
   //   //   })
   //   );
   // }
-  
 }

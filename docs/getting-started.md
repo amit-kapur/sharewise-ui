@@ -3,7 +3,7 @@
 
 # Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5 and [Node Version](https://nodejs.org/en/blog/release/v20.11.1) v20.11.1
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5 and [Node Version](https://nodejs.org/en/blog/release/v20.11.1) v20.11.1 and [Bootstrap 5](https://getbootstrap.com/)
 
 ## Development server
 
@@ -34,7 +34,21 @@ $ npm install ngrx-store-localstorage --save
 
 ```
 
-
-
 Action: Something that has happened, a unique event. 
+
+
+## Angular material 
+
+[website](https://material.angular.io/)
+
+```
+npm install --save @angular/material @angular/cdk
+npm install --save @angular/animations
+
+OR
+
+yarn add @angular/materail @angular/cdk
+yarn add @angular/animations
+
+```
 

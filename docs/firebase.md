@@ -1,4 +1,7 @@
 
+##Firebase
+
+
 ## Firebase Commands 
 
 Some basic Firebase commands are:
@@ -17,7 +20,21 @@ $ firebase logout
 
 $ firebase deploy
 
-
-
 ```
+
+
+
+
+### Clound Firestore - Realtime Database Service
+
+AngularFire / RestApi / SDK 
+
+AngularFire - A 3rd party package that helps Angular app talk to Firebase. 
+
+[install and setup](https://github.com/angular/angularfire/blob/main/docs/install-and-setup.md)
+
+
+
+
+### Authentication Service 
 

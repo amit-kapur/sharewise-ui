@@ -21,18 +21,11 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { provideEffects } from '@ngrx/effects';
 import { authFeatureKey, authReducer } from './auth/store/reducer';
 import { localStorageSync, LocalStorageConfig } from 'ngrx-store-localstorage';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { environment } from '../environments/environment.development';
 
-// config copied from firebase console during app setup. 
-const firebaseConfig = {
-  apiKey: 'AIzaSyCHnPkTD3CJfxCxOy2JWtTGb9G4yUHs4pQ',
-  authDomain: 'sharewise-ai.firebaseapp.com',
-  projectId: 'sharewise-ai',
-  storageBucket: 'sharewise-ai.appspot.com',
-  messagingSenderId: '239879491546',
-  appId: '1:239879491546:web:8503b758db0c7e077bbae3',
-  measurementId: 'G-KHQM38S4BK',
-};
 
+// TODO: Move into a seperate file...
 export function localStorageSyncConfig(): LocalStorageConfig {
   return {
     keys: ['auth'], 
@@ -54,8 +47,9 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
     provideClientHydration(),
-    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
     provideStore({
       router: routerReducer,
     },
