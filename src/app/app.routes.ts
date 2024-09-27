@@ -38,6 +38,11 @@ export const appRoutes: Routes = [
       import('./holdings/holdings.routes').then((m) => m.holdingsRoute),
   },
   {
+    path: 'share',
+    loadChildren: () =>
+      import('./share/share.routes').then((m) => m.shareRoute),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('../../src/app/home/home.routes').then((m) => m.homeRoutes),

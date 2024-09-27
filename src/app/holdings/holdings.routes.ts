@@ -1,7 +1,7 @@
 import { Route } from "@angular/router";
-import { HoldingsComponents } from "./component/holdings/holdings.component";
+import { HoldingsComponent } from "./component/holdings/holdings.component";
 
 export const holdingsRoute: Route[] = [{
     path: '',
-    component: HoldingsComponents
+    component: HoldingsComponent
 }]
