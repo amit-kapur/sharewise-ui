@@ -5,6 +5,7 @@
 For more information, view the documents in `docs/`, which includes
 
 -   [Getting Started](./docs/getting-started.md)
+-   [Architecture](./docs/architecture.md)
 -   [Monorepo document](./docs/monorepo.md)
 -   [Firebase](./docs/firebase.md)
 
@@ -25,18 +26,31 @@ For more information, view the documents in `docs/`, which includes
 
 - [ ] Set up automatic builds and deploys with GitHub
 
-- [ ] Create Portfolio(s)
+- [ ] Add a portfolio - UI/UX 
 
 - [ ] Add Shares to a portfolio
 
 
 
 > [!WARNING]
+>
 > Urgent defects that needs immediate user attention to avoid problems.
 
 - [ ] Action types are registered more than once,
 
 - [ ] Internal server error: Page /home did not render in 30 seconds
+
+- ng deploy does work with firestore. 
+
+> [!TIP]
+As a workaround I was able to copy configuration from a previous project and amend it for my new project, specifically:
+
+the deploy section in angular.json
+the contents of firebase.json
+the .firebase.rc file
+
+
+https://stackoverflow.com/questions/78809335/how-to-deploy-an-angular-18-single-page-web-app-to-firebase
 
 
 
