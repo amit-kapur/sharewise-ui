@@ -6,7 +6,7 @@ import { userProfileFeatureKey, userProfileReducer } from './store/reducer';
 import * as userProfileEffects from './store/effects';
 import { provideEffects } from '@ngrx/effects';
 
-export const userProfileRoute: Route[] = [
+export const userProfileRoutes: Route[] = [
   {
     path: '',
     component: UserProfileComponent,

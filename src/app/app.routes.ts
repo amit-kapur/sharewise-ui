@@ -29,18 +29,18 @@ export const appRoutes: Routes = [
     path: 'profiles/:slug',
     loadChildren: () =>
       import('../../src/app/userProfile/userProfile.routes').then(
-        (m) => m.userProfileRoute
+        (m) => m.userProfileRoutes
       ),
   },
   {
     path: 'holdings',
     loadChildren: () =>
-      import('./holdings/holdings.routes').then((m) => m.holdingsRoute),
+      import('./holdings/holdings.routes').then((m) => m.holdingsRoutes),
   },
   {
     path: 'share',
     loadChildren: () =>
-      import('./share/share.routes').then((m) => m.shareRoute),
+      import('./share/share.routes').then((m) => m.shareRoutes),
   },
   {
     path: '',
