@@ -28,7 +28,9 @@ For more information, view the documents in `docs/`, which includes
 
 - [ ] Add a portfolio - UI/UX 
 
-- [ ] Add Shares to a portfolio
+- [ ] Add Holding/Investment/Shares to a portfolio - UI/UX
+
+- [ ] Add a button to get the latest price for a share - UI/UX
 
 
 

@@ -1,56 +1,66 @@
-
 <main class="container pt-5">
-<sw-portfolio></sw-portfolio>
+    <sw-portfolio></sw-portfolio>
 
-<!-- TODO - Move into a component -->
- <div class="pt-5">
-    Your Holdings
+    <!-- TODO - Add holding-->
+     <br />
+    <div class="d-flex align-items-center p-3 my-3 bg-body-tertiary ">
+        <div class="lh-1">
+            <h1 class="h4 mb-0 lh-5">Your Holdings</h1>
+        </div>
+        <div class="ms-auto lh-1">
+            <button type="button" class="btn btn-primary me-3" routerLink="/share">Add holding</button>
+        </div>
+    </div>
+    <!-- TODO - Move into a component -->
+    <div class="pt-0">
+        <table class="table">
+            <caption>All amounts in Australian Dollars unless otherwise specified. Prices updated at 27 Sep 2024,
+                11:30pm AEST</caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="text-uppercase"><small>All Holdings</small></th>
+                    <th scope="col" class="text-uppercase"><small>Price</small></th>
+                    <th scope="col" class="text-uppercase"><small>Qty</small></th>
+                    <th scope="col" class="text-uppercase"><small>Value</small></th>
+                    <th scope="col" class="text-uppercase"><small>Capital Gains</small></th>
+                    <th scope="col" class="text-uppercase"><small>Dividends</small></th>
+                    <th scope="col" class="text-uppercase"><small>Return</small></th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr>
+                    <th scope="row"><a routerLink="/share">CBA.ASX</a>&nbsp;<a routerLink="/share"
+                            class="fw-light">Commonwealth Bank.</a></th>
+                    <td>$134.16</td>
+                    <td>110</td>
+                    <td>14,757.60</td>
+                    <td>7,610.02</td>
+                    <td>2,702.36</td>
+                    <td>10,312.38</td>
+                </tr>
+                <tr>
+                    <th scope="row"><a routerLink="/share">WBC.ASX</a>&nbsp;<a routerLink="/share"
+                            class="fw-light">Westpac Banking Corp</a></th>
+                    <td>$31.80</td>
+                    <td>305</td>
+                    <td>12,720.00</td>
+                    <td>3,243.35</td>
+                    <td>2,891.43</td>
+                    <td>6,134.78</td>
+                </tr>
+            </tbody>
+            <tfoot class="m-5 p-5">
+                <th>Total(AU$)</th>
+                <td>&nbsp;</td>
+                <td><strong>110</strong></td>
+                <td><strong>14,757.60</strong></td>
+                <td><strong>7,610.02</strong></td>
+                <td><strong>2,702.36</strong></td>
+                <td><strong>10,312.38</strong></td>
+            </tfoot>
+        </table>
 
-    <table class="table">
-        <caption>All amounts in Australian Dollars unless otherwise specified.</caption>
-        <thead>
-          <tr>
-            <th scope="col">All Holdings</th>
-            <th scope="col">Price</th>
-            <th scope="col">Qty</th>
-            <th scope="col">Value</th>
-            <th scope="col">Capital Gains</th>
-            <th scope="col">Dividends</th>
-            <th scope="col">Return</th>
-          </tr>
-        </thead>
-        <tbody class="table-group-divider">
-          <tr>
-            <th scope="row"><a routerLink="/share">CBA.ASX</a>&nbsp;<a routerLink="/share" class="fw-light">Commonwealth Bank.</a></th>
-            <td>$134.16</td>
-            <td>110</td>
-            <td>14,757.60</td>
-            <td>7610.02</td>
-            <td>2702.36</td>
-            <td>10312.38</td>
-          </tr>
-          <tr>
-            <th scope="row"><a routerLink="/share">WBC.ASX</a>&nbsp;<a routerLink="/share" class="fw-light">Westpac Banking Corp</a></th>
-            <td>$31.80</td>
-            <td>305</td>
-            <td>12720.00</td>
-            <td>3243.35</td>
-            <td>2891.43</td>
-            <td>6134.78</td>
-          </tr>
-        </tbody>
-        <tfoot class="m-5 p-5">
-            <th>Total(AU$)</th>
-            <td>&nbsp;</td>
-            <td><strong>110</strong></td>
-            <td><strong>14,757.60</strong></td>
-            <td><strong>7610.02</strong></td>
-            <td><strong>2702.36</strong></td>
-            <td><strong>10312.38</strong></td>
-          </tfoot>
-      </table>
 
-
- </div>
+    </div>
 
 </main>

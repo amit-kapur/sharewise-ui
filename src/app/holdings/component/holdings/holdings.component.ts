@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { PortfolioComponent } from "../../../dashboard/components/portfolio/portfolio.component";
 import { RouterLink } from "@angular/router";
+import { ShareComponent } from "../../../share/components/share.component";
 
 
 
@@ -8,7 +9,7 @@ import { RouterLink } from "@angular/router";
     selector: 'sw-holdings',
     templateUrl: './holdings.component.html',
     standalone: true,
-    imports: [PortfolioComponent, RouterLink]
+    imports: [ShareComponent, RouterLink, PortfolioComponent]
 })
 export class HoldingsComponent {
 
