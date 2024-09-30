@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'sw-login',
   templateUrl: './login.component.html',
+  styleUrl: './login.component.scss',
   standalone: true,
   imports: [ReactiveFormsModule, BackendErrorMessagesComponent, CommonModule],
 })

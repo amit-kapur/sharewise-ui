@@ -1,8 +1,8 @@
 <ng-container *ngIf="data$ | async as data">
     <div class="auth-page">
-        <div class="container page">
+        <div class="container vh-100 d-flex justify-content-center align-items-center page">
             <div class="row">
-                <div class="col-md-6 offset-md-3 col-xs-12">
+                <div class="form-signin col-md-6 col-xs-12 w-100">
                     <h1 class="text-xs-center">Sign In</h1>
                     <p class="text-xs-center">
                         <a routerLink="/register"> Need an account?</a>
@@ -10,19 +10,24 @@
                     <sw-backend-error-messages *ngIf="data.backendErrors"
                         [backendErrors]="data.backendErrors"></sw-backend-error-messages>
                     <form name="loginForm" [formGroup]="form" (ngSubmit)="onSubmit()">
-                        <fieldset class="form-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Email"
-                                formControlName="email" />
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <input type="password" class="form-control form-control-lg" placeholder="Password"
-                                formControlName="password" />
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <button type="submit" class="btn btn-lg btn-primary pull-xs-right">
-                                Sign up
-                            </button>
-                        </fieldset>
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                formControlName="email">
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                                formControlName="password">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                        <div class="form-check my-3 text-start">
+                            <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Remember me
+                            </label>
+                        </div>
+                        <button class="btn btn-primary py-2 w-100" type="submit">Sign in</button>
+                        <p class="mt-5 mb-3 text-body-secondary">© 2024</p>
                     </form>
                 </div>
             </div>

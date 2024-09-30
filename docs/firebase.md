@@ -38,3 +38,15 @@ AngularFire - A 3rd party package that helps Angular app talk to Firebase.
 
 ### Authentication Service 
 
+
+
+
+## Structure Data 
+
+Documents
+Multiple collections
+Subcollections within documents
+
+
+https://cloud.google.com/firestore/docs/concepts/structure-data
+
