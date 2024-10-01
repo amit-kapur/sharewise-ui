@@ -27,6 +27,7 @@
     "@ngrx/store": "^18.0.2",
     "@ngrx/store-devtools": "^18.0.2",
     "express": "^4.18.2",
+    "firebase": "^10.14.0",
     "ngrx-store-localstorage": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

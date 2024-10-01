@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { PortfolioComponent } from "../../../dashboard/components/portfolio/portfolio.component";
 import { RouterLink } from "@angular/router";
-import { ShareComponent } from "../../../share/components/share.component";
+import { ShareComponent } from "../../../share/components/share/share.component";
 
 
 

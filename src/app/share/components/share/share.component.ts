@@ -1,17 +1,13 @@
-
-
-
-
 import { Component } from "@angular/core";
-import { PortfolioComponent } from "../../dashboard/components/portfolio/portfolio.component";
-
+import { ShareSummaryComponent } from "../share-summary/share-summary.component";
 
 
 @Component({
     selector: 'sw-share',
     templateUrl: './share.component.html',
+    styleUrl: './share.component.scss',
     standalone: true,
-    imports: []
+    imports: [ShareSummaryComponent]
 })
 export class ShareComponent {
 
